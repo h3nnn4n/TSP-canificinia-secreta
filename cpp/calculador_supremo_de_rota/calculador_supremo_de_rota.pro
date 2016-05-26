@@ -6,7 +6,9 @@
 
 INCLUDEPATH += ./include
 
-QMAKE_CXXFLAGS += -std=c++11
+QMAKE_CXXFLAGS += -std=c++11 -lz
+
+QMAKE_LIBS += -lz -lexpat -lbz2
 
 QT       += core gui
 
