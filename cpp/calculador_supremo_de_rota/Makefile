@@ -14,8 +14,8 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -O2 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -I. -I. -I/usr/lib/qt/mkspecs/linux-g++
+CXXFLAGS      = -pipe -std=c++11 -O2 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+INCPATH       = -I. -Iinclude -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -I. -I. -I/usr/lib/qt/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -49,9 +49,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = main.cpp \
-		mainwindow.cpp moc_mainwindow.cpp
+		mainwindow.cpp \
+		mapLoadder.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		mapLoadder.o \
 		moc_mainwindow.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
@@ -146,8 +148,10 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/exceptions.prf \
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
-		calculador_supremo_de_rota.pro mainwindow.h main.cpp \
-		mainwindow.cpp
+		calculador_supremo_de_rota.pro mainwindow.h \
+		mapLoadder.h main.cpp \
+		mainwindow.cpp \
+		mapLoadder.cpp
 QMAKE_TARGET  = calculador_supremo_de_rota
 DESTDIR       = 
 TARGET        = calculador_supremo_de_rota
@@ -368,8 +372,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h mapLoadder.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp mapLoadder.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -397,7 +401,7 @@ compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
 moc_mainwindow.cpp: mainwindow.h
-	/usr/lib/qt/bin/moc $(DEFINES) -I/usr/lib/qt/mkspecs/linux-g++ -I/home/h3nnn4n/calculador_de_rota_supremo/cpp/calculador_supremo_de_rota -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/6.1.1 -I/usr/include/c++/6.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/include-fixed -I/usr/include mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/qt/bin/moc $(DEFINES) -I/usr/lib/qt/mkspecs/linux-g++ -I/home/h3nnn4n/calculador_de_rota_supremo/cpp/calculador_supremo_de_rota -I/home/h3nnn4n/calculador_de_rota_supremo/cpp/calculador_supremo_de_rota/include -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/6.1.1 -I/usr/include/c++/6.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/include-fixed -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -423,6 +427,83 @@ main.o: main.cpp mainwindow.h
 mainwindow.o: mainwindow.cpp mainwindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
+
+mapLoadder.o: mapLoadder.cpp mapLoadder.h \
+		include/osmium/io/any_input.hpp \
+		include/osmium/io/any_compression.hpp \
+		include/osmium/io/bzip2_compression.hpp \
+		include/osmium/io/compression.hpp \
+		include/osmium/io/detail/read_write.hpp \
+		include/osmium/io/writer_options.hpp \
+		include/osmium/io/error.hpp \
+		include/osmium/io/file_compression.hpp \
+		include/osmium/util/compatibility.hpp \
+		include/osmium/util/cast.hpp \
+		include/osmium/io/gzip_compression.hpp \
+		include/osmium/io/pbf_input.hpp \
+		include/osmium/io/reader.hpp \
+		include/osmium/io/detail/input_format.hpp \
+		include/osmium/io/detail/queue_util.hpp \
+		include/osmium/memory/buffer.hpp \
+		include/osmium/memory/item.hpp \
+		include/osmium/memory/item_iterator.hpp \
+		include/osmium/fwd.hpp \
+		include/osmium/osm/item_type.hpp \
+		include/osmium/osm/entity.hpp \
+		include/osmium/osm/entity_bits.hpp \
+		include/osmium/thread/queue.hpp \
+		include/osmium/io/file.hpp \
+		include/osmium/io/file_format.hpp \
+		include/osmium/util/options.hpp \
+		include/osmium/io/header.hpp \
+		include/osmium/osm/box.hpp \
+		include/osmium/osm/location.hpp \
+		include/osmium/util/double.hpp \
+		include/osmium/io/detail/read_thread.hpp \
+		include/osmium/thread/util.hpp \
+		include/osmium/io/detail/pbf_input_format.hpp \
+		include/protozero/pbf_message.hpp \
+		include/protozero/pbf_reader.hpp \
+		include/protozero/config.hpp \
+		include/protozero/exception.hpp \
+		include/protozero/types.hpp \
+		include/protozero/varint.hpp \
+		include/protozero/byteswap.hpp \
+		include/osmium/io/detail/pbf.hpp \
+		include/osmium/io/detail/pbf_decoder.hpp \
+		include/osmium/builder/osm_object_builder.hpp \
+		include/osmium/builder/builder.hpp \
+		include/osmium/osm/types.hpp \
+		include/osmium/osm.hpp \
+		include/osmium/osm/node.hpp \
+		include/osmium/osm/object.hpp \
+		include/osmium/memory/collection.hpp \
+		include/osmium/osm/tag.hpp \
+		include/osmium/osm/timestamp.hpp \
+		include/osmium/util/minmax.hpp \
+		include/osmium/osm/types_from_string.hpp \
+		include/osmium/util/misc.hpp \
+		include/osmium/osm/way.hpp \
+		include/osmium/osm/node_ref.hpp \
+		include/osmium/osm/node_ref_list.hpp \
+		include/osmium/osm/relation.hpp \
+		include/osmium/osm/area.hpp \
+		include/osmium/osm/changeset.hpp \
+		include/osmium/io/detail/protobuf_tags.hpp \
+		include/osmium/io/detail/zlib.hpp \
+		include/osmium/util/delta.hpp \
+		include/osmium/thread/pool.hpp \
+		include/osmium/thread/function_wrapper.hpp \
+		include/osmium/util/config.hpp \
+		include/osmium/io/xml_input.hpp \
+		include/osmium/io/detail/xml_input_format.hpp \
+		include/osmium/io/o5m_input.hpp \
+		include/osmium/io/detail/o5m_input_format.hpp \
+		include/osmium/handler.hpp \
+		include/osmium/visitor.hpp \
+		include/osmium/io/reader_iterator.hpp \
+		include/osmium/io/input_iterator.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mapLoadder.o mapLoadder.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

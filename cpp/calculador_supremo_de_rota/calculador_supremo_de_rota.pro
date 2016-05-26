@@ -4,6 +4,10 @@
 #
 #-------------------------------------------------
 
+INCLUDEPATH += ./include
+
+QMAKE_CXXFLAGS += -std=c++11
+
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -13,8 +17,9 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp\
+        mapLoadder.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h maploadder.h
 
 FORMS    += mainwindow.ui
