@@ -2,6 +2,7 @@
 #define MAPLOADDER_H
 
 #include <cstdint>
+#include <iomanip>
 #include <vector>
 
 #include <osmium/io/any_input.hpp>
@@ -33,7 +34,7 @@ struct CountHandler : public osmium::handler::Handler {
         lat.push_back(la);
         lon.push_back(lo);
 
-        //std::cout << node.id() << "\t | " << ", " << node.location().lat() << "\n";
+        std::cout << std::setprecision(9) << node.id() << "\t | " << lo << ", " << la << "\n";
         ++nodes;
     }
 

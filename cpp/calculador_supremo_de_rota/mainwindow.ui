@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>624</width>
-    <height>369</height>
+    <width>853</width>
+    <height>483</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>2</x>
       <y>0</y>
-      <width>581</width>
-      <height>291</height>
+      <width>850</width>
+      <height>421</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -32,24 +32,141 @@
     <widget class="QGroupBox" name="groupBox">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>20</y>
-       <width>151</width>
-       <height>211</height>
+       <x>5</x>
+       <y>0</y>
+       <width>161</width>
+       <height>381</height>
       </rect>
      </property>
      <property name="title">
-      <string>GroupBox</string>
+      <string>Carnificina Secreta</string>
      </property>
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>156</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Filtros</string>
+      </property>
+      <widget class="QCheckBox" name="chkbox_iluminacao">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>141</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Com iluminação</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="chkbox_asfaltada">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>90</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Asfaltada</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="chkbox_maodupla">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Mão Dupla</string>
+       </property>
+      </widget>
+     </widget>
     </widget>
-    <widget class="QOpenGLWidget" name="openGLWidget">
+    <widget class="QGroupBox" name="groupBox_2">
      <property name="geometry">
       <rect>
-       <x>210</x>
-       <y>30</y>
-       <width>300</width>
-       <height>200</height>
+       <x>170</x>
+       <y>0</y>
+       <width>676</width>
+       <height>381</height>
       </rect>
+     </property>
+     <property name="title">
+      <string>Mapa</string>
+     </property>
+     <widget class="QWidget" name="mapView2" native="true">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>200</y>
+        <width>341</width>
+        <height>181</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="mapView">
+      <property name="geometry">
+       <rect>
+        <x>3</x>
+        <y>20</y>
+        <width>391</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="btn_limpar">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>390</y>
+       <width>83</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Limpar</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_calcular">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>390</y>
+       <width>83</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Calcular</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_salvar">
+     <property name="geometry">
+      <rect>
+       <x>580</x>
+       <y>390</y>
+       <width>83</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Salvar</string>
      </property>
     </widget>
    </widget>
@@ -59,8 +176,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>624</width>
-     <height>22</height>
+     <width>853</width>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArquivo">
@@ -78,7 +195,7 @@
     <property name="title">
      <string>Ajuda</string>
     </property>
-    <addaction name="actionSobre"/>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuArquivo"/>
    <addaction name="menuRelatorios"/>
@@ -98,9 +215,9 @@
     <string>Sair</string>
    </property>
   </action>
-  <action name="actionSobre">
+  <action name="actionAbout">
    <property name="text">
-    <string>Sobre</string>
+    <string>About</string>
    </property>
   </action>
  </widget>
