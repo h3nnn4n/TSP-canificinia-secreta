@@ -1,3 +1,10 @@
 calculador_supremo_de_rota
 core
 *.swp
+Makefile
+main.o
+mainwindow.o
+mapLoadder.o
+moc_mainwindow.cpp
+moc_mainwindow.o
+ui_mainwindow.h
