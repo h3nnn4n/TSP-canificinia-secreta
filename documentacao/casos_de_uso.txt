@@ -1,0 +1,66 @@
+Casos de Uso
+
+1. Calculo da rota:
+Ponto chave do programa. O usuário escolhe 3 ou mais pontos no mapa para entrega e os filtros, caso necessário, e o programa retorna a rota otima.
+    Fluxo Principal:
+        a) Selecionar 3 ou mais pontos de entrega.
+        b) Escolher os filtros (rua asfaltadas, com iluminação, mão dupla/única).
+        c) Exibe na tela a rota obtida.
+        d) Opção de salvar a imagem.
+        e) Salvar a rota obtida no histórico.
+
+    Fluxo Alternativo:
+        A] Pontos insuficientes.
+            a) Exibe uma mensagem de erro e permanece no Fluxo Principal a).
+        B] Filtros impossibilitam uma solução.
+            a) Exibe uma mensagem de erro.
+            b) É oferecido a escolha entre de remover o filtro, ou buscar uma solução
+               violando o minimo possível o filtro.
+
+2. Consultar historico de rotas.
+O usuário pode consultar o historico de rotas calculadas e salvas. É mostrado o número de nós na rota e tamanho.
+    Fluxo Principal:
+        a) Clica-se o botão de consulta de historicos.
+        b) Seleciona-se os filtros relevantes.
+        c) O resultado é exibido na tela.
+    Fluxo Alternativo:
+        A] Banco de dados corrompido:
+            a) É exibido uma mensagem de erro.
+
+3. Gerar relatorio com rotas e custos totais.
+Gera-se um relatório exibindo o historio das rotas, e é incluido informações relevante ao maximo, minimo e a media
+das rotas geradas.
+    Fluxo Principal:
+        a) Clica-se o botão de geração de relatorios.
+        b) Seleciona-se os filtros relevantes.
+        c) O resultado é exibido na tela.
+    Fluxo Alternativo:
+        A] Banco de dados corrompido:
+            a) É exibido uma mensagem de erro.
+
+4. Atualização de mapas.
+Ferramenta para atualizar mapas. Consiste em um script para substituir o banco de mapas.
+    Fluxo Principal:
+        a) Seleciona-se a opção no menu.
+        b) Escolhe-se o arquivo de mapa a ser atualizado.
+        c) O Mapa é atualizado.
+    Fluxo Alternativo:
+        A] Um arquivo inválido é escolhido:
+            a) Exibe uma mensagem de erro e encerra o processo de atualiação
+               retornando a tela principal.
+
+5. CRUD para entregador.
+CRUD para os entregadores. Deve conter nome e veiculo do entregador.
+    Fluxo Principal:
+        a) Abre-se a janela de CRUD para os entregadores.
+        b) Seleciona-se a opção relevante.
+        c) Dados são fornecidos pelo usuário.
+        d) A ação é executada.
+    Fluxo Alternativo:
+        A] Um dado inválido é fornecido:
+            a) Exibe uma mensagem de erro e permanece no mesma tela.
+            b) Aguarda que o usuário entre com o dado correto.
+        B] Banco de dados corrompido:
+            a) É exibido uma mensagem de erro.
+            b) Volta a tela original.
+
