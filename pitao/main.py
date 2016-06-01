@@ -16,14 +16,19 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         ################## MAP MAGIC ##################
         self.mapPath = None
         self.mapMagic = mapHandler()
+        #self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map_smaller.osm')
         #self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map_small.osm')
-        self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map.osm')
+        #self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map.osm')
+        #self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map_big.osm')
+        #self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map_bucarein.osm')
+        #self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map_jariva.osm')
+        self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map_jarivatuba.osm')
         self.mapMagic.print()
         ###############################################
 
         ################ DRAWING MAGIC ################
         self.mapView = drawingMachine(self.mapView)
-        self.mapView.setGeometry(QtCore.QRect(0, 0, 471, 421))
+        self.mapView.setGeometry(QtCore.QRect(0, 0, 631, 541))
         self.mapView.setObjectName("mapView")
         self.mapView.loadMap(self.mapMagic)
         self.mapView.update()
@@ -49,8 +54,9 @@ class mapHandler(o.SimpleHandler):
         self.nodes  = []
         self.ways   = []
         self.rels   = []
-        self.points = {}
         self.lines  = []
+
+        self.points = {}
 
         self.minLat =  99999
         self.maxLat = -99999
@@ -64,6 +70,20 @@ class mapHandler(o.SimpleHandler):
             #self.points[n.id] = (n.location.lat, n.location.lon)
 
         self.points[n.id] = (n.location.lat, n.location.lon)
+
+        #if 'highway' in n.tags:
+            #print()
+            #for p in n.tags:
+                #print(p.k, " - ",  p.v)
+
+        #for p in n.tags:
+            #print(p.k, " - ",  p.v)
+
+        if 'highway' in n.tags: # or True:
+            self.minLat = min(self.minLat, n.location.lat)
+            self.minLon = min(self.minLon, n.location.lon)
+            self.maxLat = max(self.maxLat, n.location.lat)
+            self.maxLon = max(self.maxLon, n.location.lon)
 
         self.minLat = min(self.minLat, n.location.lat)
         self.minLon = min(self.minLon, n.location.lon)
