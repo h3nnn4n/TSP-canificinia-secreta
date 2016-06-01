@@ -112,6 +112,16 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>110</y>
+        <width>241</width>
+        <height>161</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -128,6 +138,8 @@
     <property name="title">
      <string>Arquivo</string>
     </property>
+    <addaction name="actionAbrir_Mapa"/>
+    <addaction name="separator"/>
     <addaction name="actionSair"/>
    </widget>
    <addaction name="menuArquivo"/>
@@ -136,6 +148,11 @@
   <action name="actionSair">
    <property name="text">
     <string>Sair</string>
+   </property>
+  </action>
+  <action name="actionAbrir_Mapa">
+   <property name="text">
+    <string>Abrir Mapa</string>
    </property>
   </action>
  </widget>

@@ -55,6 +55,9 @@ class Ui_MainWindow(object):
         self.mapView.setFrameShape(QtGui.QFrame.StyledPanel)
         self.mapView.setFrameShadow(QtGui.QFrame.Raised)
         self.mapView.setObjectName(_fromUtf8("mapView"))
+        self.widget = QtGui.QWidget(self.mapView)
+        self.widget.setGeometry(QtCore.QRect(80, 110, 241, 161))
+        self.widget.setObjectName(_fromUtf8("widget"))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 20))
@@ -67,6 +70,10 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.actionSair = QtGui.QAction(MainWindow)
         self.actionSair.setObjectName(_fromUtf8("actionSair"))
+        self.actionAbrir_Mapa = QtGui.QAction(MainWindow)
+        self.actionAbrir_Mapa.setObjectName(_fromUtf8("actionAbrir_Mapa"))
+        self.menuArquivo.addAction(self.actionAbrir_Mapa)
+        self.menuArquivo.addSeparator()
         self.menuArquivo.addAction(self.actionSair)
         self.menubar.addAction(self.menuArquivo.menuAction())
 
@@ -81,4 +88,5 @@ class Ui_MainWindow(object):
         self.pushButton_3.setText(_translate("MainWindow", "Botão 2", None))
         self.menuArquivo.setTitle(_translate("MainWindow", "Arquivo", None))
         self.actionSair.setText(_translate("MainWindow", "Sair", None))
+        self.actionAbrir_Mapa.setText(_translate("MainWindow", "Abrir Mapa", None))
 
