@@ -64,6 +64,6 @@ class drawingMachine(QtGui.QWidget):
 
     def getPoint(self, i, j):
         size = self.size()
-        y = ( i - self.mapMagic.minLat ) / ( self.mapMagic.maxLat - self.mapMagic.minLat) * size.height()
-        x = ( j - self.mapMagic.minLon ) / ( self.mapMagic.maxLon - self.mapMagic.minLon) * size.width()
+        y = size.height () - ( i - self.mapMagic.minLat ) / ( self.mapMagic.maxLat - self.mapMagic.minLat) * size.height()
+        x =                  ( j - self.mapMagic.minLon ) / ( self.mapMagic.maxLon - self.mapMagic.minLon) * size.width()
         return (x, y)
