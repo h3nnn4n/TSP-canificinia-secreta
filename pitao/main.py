@@ -16,13 +16,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         ################## MAP MAGIC ##################
         self.mapPath = None
         self.mapMagic = mapHandler()
-        #self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map_smaller.osm')
-        #self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map_small.osm')
-        #self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map.osm')
-        #self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map_big.osm')
-        #self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map_bucarein.osm')
-        #self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map_jariva.osm')
-        self.fPicker(fname = '/home/h3nnn4n/projeto_de_soft/pitao/map_jarivatuba.osm')
+        self.fPicker(fname = 'map_smaller.osm')
+        self.fPicker(fname = 'map_small.osm')
+        self.fPicker(fname = 'map.osm')
+        self.fPicker(fname = 'map_big.osm')
+        self.fPicker(fname = 'map_bucarein.osm')
+        self.fPicker(fname = 'map_jariva.osm')
+        self.fPicker(fname = 'map_jarivatuba.osm')
         self.mapMagic.print()
         ###############################################
 
