@@ -2,11 +2,25 @@ from PyQt4              import *
 
 import sys
 import random
+from math import sqrt
 
 class drawingMachine(QtGui.QWidget):
     def __init__(self, parent = None):
         super(drawingMachine, self).__init__(parent)
         self.mapMagic = None
+        self.clicked = set()
+
+    def mousePressEvent(self, event):
+        if event.button() == QtCore.Qt.LeftButton:
+            point = event.pos()
+            x, y  = point.x(), point.y()
+            self.clicked.add(sorted(list(filter(lambda x: x[2],
+                                   (list(map   (lambda w: (sqrt(((self.getPoint(self.mapMagic.points[w]))[0]-x)**2 +
+                                                                ((self.getPoint(self.mapMagic.points[w]))[1]-y)**2),
+                                                                 (self.getPoint(self.mapMagic.points[w])),
+                                                                 (self.mapMagic.points[w])[2]), self.mapMagic.points))))))[0]) # Holy fuckling one liner
+
+            self.update()
 
     def loadMap(self, mapMagic):
         self.mapMagic = mapMagic
@@ -16,7 +30,13 @@ class drawingMachine(QtGui.QWidget):
         qp.begin(self)
         self.drawLines(qp)
         self.drawPoints(qp)
+        self.drawClicked(qp)
         qp.end()
+
+    def drawClicked(self, qp):
+        qp.setPen(QtCore.Qt.green)
+        for k, (x1, y1), p in self.clicked:
+            qp.drawEllipse(x1-2, y1-2, 3, 3)
 
     def drawPoints(self, qp):
         qp.setPen(QtCore.Qt.blue)
@@ -34,10 +54,7 @@ class drawingMachine(QtGui.QWidget):
                 qp.drawPoint(x1, y1)
                 qp.drawPoint(x2, y2)
             except Exception as e :
-                #print("Opps")
-                #raise
                 pass
-
 
     def drawLines(self, qp):
         qp.setPen(QtCore.Qt.red)
@@ -54,16 +71,15 @@ class drawingMachine(QtGui.QWidget):
             except:
                   pass
 
+    def getPoint(self, i, j = None):
+        if j is None:
+            i, j, k = i
+            size = self.size()
+            y = size.height () - ( i - self.mapMagic.minLat ) / ( self.mapMagic.maxLat - self.mapMagic.minLat) * size.height()
+            x =                  ( j - self.mapMagic.minLon ) / ( self.mapMagic.maxLon - self.mapMagic.minLon) * size.width()
+        else:
+            size = self.size()
+            y = size.height () - ( i - self.mapMagic.minLat ) / ( self.mapMagic.maxLat - self.mapMagic.minLat) * size.height()
+            x =                  ( j - self.mapMagic.minLon ) / ( self.mapMagic.maxLon - self.mapMagic.minLon) * size.width()
 
-        #for k in self.mapMagic.points:
-            #i = self.mapMagic.points[k]
-            #y = ( i[0] - self.mapMagic.minLat ) / ( self.mapMagic.maxLat - self.mapMagic.minLat) * size.height()
-            #x = ( i[1] - self.mapMagic.minLon ) / ( self.mapMagic.maxLon - self.mapMagic.minLon) * size.width()
-            #x, y = self.getPoint(i[0], i[1])
-            #qp.drawPoint(x, y)
-
-    def getPoint(self, i, j):
-        size = self.size()
-        y = size.height () - ( i - self.mapMagic.minLat ) / ( self.mapMagic.maxLat - self.mapMagic.minLat) * size.height()
-        x =                  ( j - self.mapMagic.minLon ) / ( self.mapMagic.maxLon - self.mapMagic.minLon) * size.width()
         return (x, y)

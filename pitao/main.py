@@ -68,18 +68,7 @@ class mapHandler(o.SimpleHandler):
     def node(self, n):
         self.nodes.append(n)
 
-        #if 'highway' in n.tags:
-            #self.points[n.id] = (n.location.lat, n.location.lon)
-
-        self.points[n.id] = (n.location.lat, n.location.lon)
-
-        #if 'highway' in n.tags:
-            #print()
-            #for p in n.tags:
-                #print(p.k, " - ",  p.v)
-
-        #for p in n.tags:
-            #print(p.k, " - ",  p.v)
+        self.points[n.id] = (n.location.lat, n.location.lon, 'highway' in n.tags)
 
         if 'highway' in n.tags: # or True:
             self.minLat = min(self.minLat, n.location.lat)
@@ -87,43 +76,29 @@ class mapHandler(o.SimpleHandler):
             self.maxLat = max(self.maxLat, n.location.lat)
             self.maxLon = max(self.maxLon, n.location.lon)
 
-        #self.minLat = min(self.minLat, n.location.lat)
-        #self.minLon = min(self.minLon, n.location.lon)
-        #self.maxLat = max(self.maxLat, n.location.lat)
-        #self.maxLon = max(self.maxLon, n.location.lon)
-
     def way(self, w):
         self.ways.append(w)
         if 'highway' in w.tags:
             f   = None
             old = None
             for j in w.nodes:
-                #print(j)
                 if f is not None:
                     f = j.ref
 
                 if old is not None:
                     self.lines.append((old.ref, j.ref))
-                    #print((old.ref, j.ref))
                 old = j
             if w.is_closed():
                 self.lines.append((old.ref, f))
-            #print((old.ref, f), w.is_closed())
 
     def relation(self, r):
         self.rels.append(r)
 
     def print(self):
         pass
-        #print(self.points)
-        #print("Loaded: ")
-        #print(self.nodes)
-        #print(self.ways)
-        #print(self.rels)
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
     window = MainWindow()
     window.show()
     sys.exit(app.exec_())
-
