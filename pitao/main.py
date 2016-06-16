@@ -58,7 +58,8 @@ class mapHandler(o.SimpleHandler):
         self.rels   = []
         self.lines  = []
 
-        self.points = {}
+        self.points      = {}
+        self.points_used = {}
 
         self.minLat =  99999
         self.maxLat = -99999
@@ -69,6 +70,7 @@ class mapHandler(o.SimpleHandler):
         self.nodes.append(n)
 
         self.points[n.id] = (n.location.lat, n.location.lon, 'highway' in n.tags)
+        self.points_used[n.id] = False
 
         if 'highway' in n.tags: # or True:
             self.minLat = min(self.minLat, n.location.lat)
@@ -82,6 +84,7 @@ class mapHandler(o.SimpleHandler):
             f   = None
             old = None
             for j in w.nodes:
+                self.points_used[j.ref] = True
                 if f is not None:
                     f = j.ref
 

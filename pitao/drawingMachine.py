@@ -12,13 +12,21 @@ class drawingMachine(QtGui.QWidget):
 
     def mousePressEvent(self, event):
         if event.button() == QtCore.Qt.LeftButton:
-            point = event.pos()
-            x, y  = point.x(), point.y()
-            self.clicked.add(sorted(list(filter(lambda x: x[2],
-                                   (list(map   (lambda w: (sqrt(((self.getPoint(self.mapMagic.points[w]))[0]-x)**2 +
-                                                                ((self.getPoint(self.mapMagic.points[w]))[1]-y)**2),
-                                                                 (self.getPoint(self.mapMagic.points[w])),
-                                                                 (self.mapMagic.points[w])[2]), self.mapMagic.points))))))[0]) # Holy fuckling one liner
+            x, y  = event.pos().x(), event.pos().y()
+
+            nearest = None
+            for obj in sorted(
+                    map (lambda w: (sqrt(((self.getPoint(self.mapMagic.points[w]))[0]-x)**2 +
+                                         ((self.getPoint(self.mapMagic.points[w]))[1]-y)**2),
+                                          (self.getPoint(self.mapMagic.points[w])),
+                                           self.mapMagic.points_used[w]
+                                        ), self.mapMagic.points)):
+                if obj[2] and nearest is None:
+                    nearest = obj
+                    break
+
+            if nearest is not None:
+                self.clicked.add(nearest)
 
             self.update()
 
