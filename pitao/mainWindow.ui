@@ -71,7 +71,7 @@
       <property name="title">
        <string>Botões</string>
       </property>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="btn_calcular">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -81,7 +81,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Botão 1</string>
+        <string>Calcular</string>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_2">
@@ -111,9 +111,6 @@
        </property>
       </widget>
      </widget>
-     <zorder>groupBox</zorder>
-     <zorder>mapView</zorder>
-     <zorder>mapView</zorder>
     </widget>
     <widget class="QFrame" name="mapView">
      <property name="geometry">
@@ -130,7 +127,6 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <zorder>gridLayoutWidget</zorder>
     </widget>
    </widget>
   </widget>
