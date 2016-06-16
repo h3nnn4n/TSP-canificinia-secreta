@@ -10,6 +10,9 @@ class drawingMachine(QtGui.QWidget):
         self.mapMagic = None
         self.clicked = set()
 
+    def getClicked(self):
+        return self.clicked
+
     def mousePressEvent(self, event):
         if event.button() == QtCore.Qt.LeftButton:
             x, y  = event.pos().x(), event.pos().y()

@@ -12,6 +12,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.actionSair.triggered.connect(self.sair)
         self.actionAbrir_Mapa.triggered.connect(self.fPicker)
+        self.btn_calcular.clicked.connect(self.calculate_tsp)
 
         ################## MAP MAGIC ##################
         self.mapPath = None
@@ -36,6 +37,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.mapView.update()
         ###############################################
 
+    def calculate_tsp(self):
+        points = self.mapView.getClicked()
+        print(points)
+        # STUB
+        pass
+
     def sair(self):
         self.close()
 
@@ -53,10 +60,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 class mapHandler(o.SimpleHandler):
     def __init__(self):
         o.SimpleHandler.__init__(self)
-        self.nodes  = []
-        self.ways   = []
-        self.rels   = []
-        self.lines  = []
+        self.nodes       = []
+        self.ways        = []
+        self.rels        = []
+        self.lines       = []
+        self.named_roads = []
 
         self.points      = {}
         self.points_used = {}
@@ -90,9 +98,11 @@ class mapHandler(o.SimpleHandler):
 
                 if old is not None:
                     self.lines.append((old.ref, j.ref))
+                    self.named_roads.append((old.ref, j.ref), j.tags['name'] if 'name' in j.tags else '' )
                 old = j
             if w.is_closed():
                 self.lines.append((old.ref, f))
+                self.named_roads.append((old.ref, j), f.tags['name'] if 'name' in f.tags else '' )
 
     def relation(self, r):
         self.rels.append(r)
