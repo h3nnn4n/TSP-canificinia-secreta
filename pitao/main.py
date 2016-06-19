@@ -2,6 +2,7 @@ from PyQt4              import *
 from mainWindow         import *
 from drawingMachine     import *
 from mapHandler         import *
+from graph              import *
 
 import sys
 
@@ -38,7 +39,19 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def calculate_tsp(self):
         points = self.mapView.getClicked()
-        print(points)
+        print("-------------")
+        print("Selected points are:")
+        for point in points:
+            print(point)
+        print()
+
+        for p1 in points:
+            for p2 in points:
+                if p1 == p2:
+                    continue
+
+                print(dijkstra(self.mapMagic, p1, p2))
+
         # STUB
         pass
 
