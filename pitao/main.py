@@ -4,6 +4,8 @@ from drawingMachine     import *
 
 import osmium as o
 
+from math import sqrt
+
 import sys
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
@@ -74,10 +76,19 @@ class mapHandler(o.SimpleHandler):
         self.minLon =  99999
         self.maxLon = -99999
 
+    def dist(self, a, b):
+        x1 = self.points[a][0]
+        x2 = self.points[b][0]
+
+        y1 = self.points[a][1]
+        y2 = self.points[b][1]
+
+        return sqrt((x1 - x2)**2 + (y1 - y2)**2) * 100.0
+
     def node(self, n):
         self.nodes.append(n)
 
-        self.points[n.id] = (n.location.lat, n.location.lon, 'highway' in n.tags)
+        self.points[n.id]      = (n.location.lat, n.location.lon, 'highway' in n.tags)
         self.points_used[n.id] = False
 
         if 'highway' in n.tags: # or True:
@@ -98,11 +109,11 @@ class mapHandler(o.SimpleHandler):
 
                 if old is not None:
                     self.lines.append((old.ref, j.ref))
-                    self.named_roads.append((old.ref, j.ref), j.tags['name'] if 'name' in j.tags else '' )
+                    self.named_roads.append(((old.ref, j.ref), w.tags['name'] if 'name' in w.tags else '', self.dist(old.ref, j.ref)))
                 old = j
-            if w.is_closed():
+            if w.is_closed() and f is not None:
                 self.lines.append((old.ref, f))
-                self.named_roads.append((old.ref, j), f.tags['name'] if 'name' in f.tags else '' )
+                self.named_roads.append(((old.ref, f), w.tags['name'] if 'name' in w.tags else '', self.dist(old.ref, f)))
 
     def relation(self, r):
         self.rels.append(r)

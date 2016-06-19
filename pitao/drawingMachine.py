@@ -22,7 +22,8 @@ class drawingMachine(QtGui.QWidget):
                     map (lambda w: (sqrt(((self.getPoint(self.mapMagic.points[w]))[0]-x)**2 +
                                          ((self.getPoint(self.mapMagic.points[w]))[1]-y)**2),
                                           (self.getPoint(self.mapMagic.points[w])),
-                                           self.mapMagic.points_used[w]
+                                           self.mapMagic.points_used[w],
+                                           w
                                         ), self.mapMagic.points)):
                 if obj[2] and nearest is None:
                     nearest = obj
@@ -46,7 +47,7 @@ class drawingMachine(QtGui.QWidget):
 
     def drawClicked(self, qp):
         qp.setPen(QtCore.Qt.green)
-        for k, (x1, y1), p in self.clicked:
+        for k, (x1, y1), p, i in self.clicked:
             qp.drawEllipse(x1-2, y1-2, 3, 3)
 
     def drawPoints(self, qp):
