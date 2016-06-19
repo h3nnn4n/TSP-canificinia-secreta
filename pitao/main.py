@@ -50,11 +50,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     w       = dijkstra(self.mapMagic, p1, p2)
                     g[(p1[3], p2[3])] = w
 
-        #print(g)
-
         simmulatedAnnealing(g, self.mapMagic, points)
 
-        # STUB
         pass
 
     def sair(self):

@@ -1,6 +1,7 @@
 import osmium as o
 
 from math import sqrt
+import math
 
 class mapHandler(o.SimpleHandler):
     def __init__(self):
@@ -18,6 +19,20 @@ class mapHandler(o.SimpleHandler):
         self.maxLat = -99999
         self.minLon =  99999
         self.maxLon = -99999
+
+    def haversine(self, a, b):
+        x1 = self.points[a][0]
+        x2 = self.points[b][0]
+
+        y1 = self.points[a][1]
+        y2 = self.points[b][1]
+
+        lonh  = math.sin(math.radians(x1 - x2) * 0.5)
+        lonh *= lonh
+        lath  = math.sin(math.radians(y1 - y2) * 0.5)
+        lath *= lath
+        tmp   = math.cos(math.radians(y1)) * math.cos(math.radians(y2))
+        return 2.0 * 6372797.560856 * math.asin(sqrt(lath + tmp*lonh))
 
     def dist(self, a, b):
         x1 = self.points[a][0]
@@ -52,7 +67,7 @@ class mapHandler(o.SimpleHandler):
 
                 if old is not None:
                     self.lines.append((old.ref, j.ref))
-                    self.named_roads.append(((old.ref, j.ref), w.tags['name'] if 'name' in w.tags else '', self.dist(old.ref, j.ref)))
+                    self.named_roads.append(((old.ref, j.ref), w.tags['name'] if 'name' in w.tags else '', self.haversine(old.ref, j.ref)))
                 old = j
             if w.is_closed() and f is not None:
                 self.lines.append((old.ref, f))
