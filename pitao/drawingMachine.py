@@ -21,7 +21,8 @@ class drawingMachine(QtGui.QWidget):
         if self.tsp is None:
             return
 
-        qp.setPen(QtGui.QColor(255,255,255))
+        #qp.pen().setWidth(3)
+        qp.setPen(QtGui.QPen(QtGui.QColor(255,255,255), 2))
 
         for i in range(0, len(self.tsp)-1):
             k = (self.tsp[i], self.tsp[i+1])
