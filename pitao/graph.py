@@ -1,13 +1,9 @@
 
 def dijkstra(mapMagic, source, dest):
-    print("\nRUNNING DIJKSTRA")
-
     dist = {}
 
     source_id = source[3]
     dest_id   = dest[3]
-
-    print("From %d to %d" % (source_id, dest_id))
 
     dist      = {i: 99999 for i in mapMagic.points}
     prev      = {i: -1    for i in mapMagic.points}
@@ -30,12 +26,11 @@ def dijkstra(mapMagic, source, dest):
                     dist[v] = alt
                     prev[v] = u
 
-    path = set()
+    path = []
     u    = dest_id
     while prev[u] != -1:
-        path.add(u)
+        path.append((u, prev[u]))
         u = prev[u]
-    path.add(u)
 
     return path, dist[dest_id]
 

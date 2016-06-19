@@ -3,6 +3,7 @@ from mainWindow         import *
 from drawingMachine     import *
 from mapHandler         import *
 from graph              import *
+from tsp                import *
 
 import sys
 
@@ -39,18 +40,19 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def calculate_tsp(self):
         points = self.mapView.getClicked()
-        print("-------------")
-        print("Selected points are:")
-        for point in points:
-            print(point)
-        print()
+        g      = {}
 
         for p1 in points:
             for p2 in points:
                 if p1 == p2:
                     continue
+                else:
+                    w       = dijkstra(self.mapMagic, p1, p2)
+                    g[(p1[3], p2[3])] = w
 
-                print(dijkstra(self.mapMagic, p1, p2))
+        #print(g)
+
+        simmulatedAnnealing(g, self.mapMagic, points)
 
         # STUB
         pass
