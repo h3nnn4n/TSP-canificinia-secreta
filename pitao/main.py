@@ -50,9 +50,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     w       = dijkstra(self.mapMagic, p1, p2)
                     g[(p1[3], p2[3])] = w
 
-        simmulatedAnnealing(g, self.mapMagic, points)
-
-        pass
+        path, cost = simmulatedAnnealing(g, self.mapMagic, points)
+        self.mapView.tspSolution(path, g)
 
     def sair(self):
         self.close()

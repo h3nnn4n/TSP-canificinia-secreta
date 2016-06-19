@@ -8,7 +8,36 @@ class drawingMachine(QtGui.QWidget):
     def __init__(self, parent = None):
         super(drawingMachine, self).__init__(parent)
         self.mapMagic = None
-        self.clicked = set()
+        self.clicked  = set()
+        self.tsp      = None
+        self.graph    = None
+
+    def tspSolution(self, sol, graph):
+        self.tsp   = sol.copy()
+        self.graph = graph.copy()
+        self.update()
+
+    def drawSolution(self, qp):
+        if self.tsp is None:
+            return
+
+        qp.setPen(QtGui.QColor(255,255,255))
+
+        for i in range(0, len(self.tsp)-1):
+            k = (self.tsp[i], self.tsp[i+1])
+            lines = self.graph[k][0]
+
+            for id1, id2 in lines:
+                try:
+                    i = self.mapMagic.points[id1]
+                    x1, y1 = self.getPoint(i[0], i[1])
+
+                    i = self.mapMagic.points[id2]
+                    x2, y2 = self.getPoint(i[0], i[1])
+
+                    qp.drawLine(x1, y1, x2, y2)
+                except:
+                    pass
 
     def getClicked(self):
         return self.clicked
@@ -42,6 +71,7 @@ class drawingMachine(QtGui.QWidget):
         qp.begin(self)
         self.drawLines(qp)
         self.drawPoints(qp)
+        self.drawSolution(qp)
         self.drawClicked(qp)
         qp.end()
 

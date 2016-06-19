@@ -5,13 +5,11 @@ def simmulatedAnnealing(g, mapMagic, points):
     t_0      = 20.0
     t_n      = 0.0
     T        = 0.1
-    maxIter  = 10**2
+    maxIter  = 10**3
     i        = 0
     point_id = list(map( lambda x: x[3], points))
 
     s0 = randomSolution(point_id)
-
-    print(energy(s0, g))
 
     while i < maxIter:
         T =  (t_0 - t_n)/cosh((10.0*float(i)/float(maxIter)))
@@ -21,7 +19,9 @@ def simmulatedAnnealing(g, mapMagic, points):
 
         i += 1
 
-        print(i, energy(s0, g), T)
+        #print(i, energy(s0, g), T)
+
+    return s0, energy(s0, g)
 
 def pertubate(g):
     w      = random.randint(1, len(g) - 3)
