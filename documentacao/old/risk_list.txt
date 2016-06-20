@@ -1,0 +1,71 @@
+Risk List
+
+1.                  Introduction
+
+O programa envolve 4 componentes chave, os quais possuem um risco consideravelmente alto e com um grande impacto negativo.
+1.1               Purpose
+
+Tendo em vista a complexidade do projeto em questao, listou-se as funcionalidades criticas do projeto, com o objetivo de eliminar
+os riscos A.S.A.P.
+1.2               Definitions, Acronyms, and Abbreviations
+
+TSP: Traveling Salesman Problem;
+OSM: Open Street Map;
+
+2.                  Risks
+
+2.1            Solver de TSP
+2.1.1          Risk Magnitude or Ranking
+    Máxima.
+2.1.2          Description
+    Solver de tsp. Recebe um grafo completo a partir do parser do mapa.
+2.1.3          Impacts
+    Inviabilização do projeto.
+2.1.4          Indicators
+    Respostas inconsistentes/incorretas. Tempo necessário para resolver o tsp acima de 5~10 segundos.
+2.1.5          Mitigation Strategy
+    Solução herustica no lugar da exata.
+2.1.6          Contingency Plan
+    Extreme Go-Horse.
+
+
+2.2            Atualização de mapa
+2.2.1          Risk Magnitude or Ranking
+    Média.
+2.2.2          Description
+    O processo de atualização de mapa, caso venha a falha implicara na necessidade de contado com o desenvolvedor
+para realizar a atualização do mapa.
+2.2.3          Impacts
+    Incomodo para o cliente, custos elevados de manutenção e atualização.
+2.2.4          Indicators
+    BOOM, nao funcionou.
+2.2.5          Mitigation Strategy
+    Atualizações feitas foi um tecnico ou atravez de novas versoes encomendadas.
+
+
+2.3            Parser do OSM
+2.3.1          Risk Magnitude or Ranking
+    Alta.
+2.3.2          Description
+    Dado o formato original do OSM, é necessário que seja realizado a leitura do arquivo fornecido. A leitura necessitara de um parser.
+2.3.3          Impacts
+    Possivel inviabilização do projeto.
+2.3.4          Indicators
+    Grafos inconsistentes.
+2.3.5          Mitigation Strategy
+    Utilização de um solver pronto. Informações obitidas a partir de outra fonte. Mapa pre-parseado. Parsing manual.
+
+2.4            Geração do grafo completo para o solver de tsp.
+2.4.1          Risk Magnitude or Ranking
+    Alta.
+2.4.2          Description
+    O solver de TSP trabalha com um grafo completo, portanto é necessário gerar um a partir do mapa. Idealmente sera utilizado A* com distancia euclidiana para gera-lo.
+Alternativas envolvem o uso de Dijkstra ou Custo Uniforme.
+2.4.3          Impacts
+    Aumento da complexidade do solver. Aumento no tempo de solucao, podendo inviabilizar o projeto.
+2.4.4          Indicators
+    Grafos inconsistentes.
+2.4.5          Mitigation Strategy
+    Utilização de algoritmos mais simples (e menos eficientes). O não uso da geracao do grafo completo, implicado em um solver mais complexo.
+
+

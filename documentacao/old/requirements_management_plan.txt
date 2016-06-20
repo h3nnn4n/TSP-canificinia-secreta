@@ -1,0 +1,84 @@
+Requirements Management Plan
+
+1.           Introduction
+
+1.1                Purpose
+
+Este documento possui como proposito especificar como as atividades serão distribuidas pelo grupo. Definir a
+nomenclatura utilizada para o gerenciamento de artefatos.
+
+1.2                Scope
+
+?
+
+1.3                Definitions, Acronyms, and Abbreviations
+
+TSP: Traveling salesman problem
+OSM: Open Street Map
+CRUD: Create, Read, Update, Delete
+
+1.4                References
+
+1.5                Overview
+
+2.           Requirements Management
+2.1                Organization, Responsibilities, and Interfaces
+
+Time: Renan Samuel da Silva, Vinicius Bruch Zuchi
+Renan: Escrita do parser para o OSM, tsp.
+Zuchi: CRUD, relatorio, historico, tsp.
+
+2.2                Tools, Environment, and Infrastructure
+
+Ambiente de desenvolvimento: Arch Linux e Funtoo.
+Softwares utilizados: Vim, g++ (gcc), qt-creator, qt-designer.
+Bibliotecas utilizadas: qt5, qt4.
+Recursos externos: OSM.
+
+Describe the tools and procedures used to version control Requirements items generated throughout the project or product lifecycle.]
+3.          The Requirements Management Program
+3.1                Requirements Identification
+
+|---------------------------------------------------------------------------------------------------------------------------------------------------|
+|Artifact (Document Type)          | Traceability Item                  | Description                                                               |
+|--------------------------------- | ---------------------------------- | ------------------------------------------------------------------------- |
+|Stakeholder Requests (STR)        | Stakeholder Request (STRQ)         | Key requests, including Change Requests, from stakeholders.               |
+|Vision (VIS)                      | Stakeholder Need (NEED)            | Key stakeholder or user need                                              |
+|Vision (VIS)                      | Feature (FEAT)                     | Conditions or capabilities of this release of the system                  |
+|Use-Case Model                    | Use Case (UC)                      | Use cases for this release, documented in Rational Rose                   |
+|Supplementary Specification (SS)  | Supplementary Requirement (SUPP)   | Non-functional requirements that are not captured in the use-case model   |
+|---------------------------------------------------------------------------------------------------------------------------------------------------|
+
+3.2                Traceability
+
+TODO
+
+[Overview of traceability; for example, a traceability graph.]
+
+3.3                Attributes
+3.3.1      Attributes for <traceability item>
+
+Status         | [Set after negotiation and review by the project management team. Tracks progress during definition of the project baseline.]
+Proposed       | [Used to describe features that are under discussion but have not yet been reviewed and accepted by the "official channel," such as a working group consisting of representatives from the project team, product management, and user or customer community.]
+Approved       | [Capabilities that are deemed useful and feasible, and have been approved for implementation by the official channel.]
+Rejected       | [Rejected by the official channel.]
+Incorporated   | [Features incorporated into the product baseline at a specific point in time.]
+Benefit        | [Set by Marketing, the product manager or the business analyst. All requirements are not created equal. Ranking requirements by their relative benefit to the end user opens a dialogue with customers, analysts, and members of the development team. Used in managing scope and determining development priority.]
+Critical       | [Essential features. Failure to implement means the system will not meet customer needs. All critical features must be implemented in the release or the schedule will slip.]
+Important      | [Features important to the effectiveness and efficiency of the system for most applications. The functionality cannot be easily provided in some other way. Lack of inclusion of an important feature may affect customer or user satisfaction, or even revenue, but release will not be delayed due to lack of any important feature.]
+Useful         | [Features that are useful in less typical applications or for which reasonably efficient workarounds can be achieved will be used less frequently.  No significant revenue or customer satisfaction impact can be expected if such an item is not included in a release.]
+Effort         | [Set by the development team. Because some features require more time and resources than others, estimating the number of team or person-weeks, lines of code required or function points, for example, is the best way to gauge complexity and set expectations of what can and cannot be accomplished in a given time frame. Used in managing scope and determining development priority.]
+Risk           | [Set by the development team and based on the probability the project will experience undesirable events, such as cost overruns, schedule delays or even cancellation. Most project managers find categorizing risks as high, medium, and low to be sufficient, although finer gradations are possible. Risk can often be assessed indirectly by measuring the uncertainty (range) of the projects’ team’s estimated schedule.]
+Stability      | [Set by the analyst and development team, this is based on the probability that the feature will change or the team’s understanding of the feature will change. Used to help establish development priorities and determine those items for which additional elicitation is the appropriate next action.]
+Target Release | [Records the intended product version in which the feature will first appear. This field can be used to allocate features from a Vision document into a particular baseline release. When combined with the status field, your team can propose, record, and discuss various features of the release without committing them to development. Only features whose Status is set to Incorporated and whose Target Release is defined will be implemented. When scope management occurs, the Target Release Version Number can be increased so the item will remain in the Vision document, but will be scheduled for a later release.]
+Assigned To    | [In many projects, features will be assigned to "feature teams" responsible for further elicitation, writing the software requirements and implementation. This simple pull-down list will help everyone on the project team to better understand responsibilities.]
+Reason         | [This text field is used to track the source of the requested feature. Requirements exist for specific reasons. This field records an explanation or a reference to an explanation. For example, the reference might be to a page and line number of a product requirement specification or to a minute marker on a video of an important customer interview.]
+
+4.           Milestones
+
+-> Prototipos da interface.
+-> Solver de tsp.
+-> Parser do OSM.
+-> Parser do mapa para o solver de tsp.
+-> CRUD dos entregadores.
+-> Relatorio/historico.
