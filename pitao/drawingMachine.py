@@ -23,11 +23,13 @@ class drawingMachine(QtGui.QWidget):
         self.graph = graph.copy()
         self.update()
 
+    def getTspSolution(self):
+        return self.tsp.copy(), self.graph.copy()
+
     def drawSolution(self, qp):
         if self.tsp is None:
             return
 
-        #qp.pen().setWidth(3)
         qp.setPen(QtGui.QPen(QtGui.QColor(255,255,255), 2))
 
         for i in range(0, len(self.tsp)-1):

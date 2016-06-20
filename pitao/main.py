@@ -1,5 +1,6 @@
 from PyQt4              import *
 from mainWindow         import *
+from rotaView           import *
 from drawingMachine     import *
 from mapHandler         import *
 from graph              import *
@@ -15,6 +16,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.actionAbrir_Mapa.triggered.connect ( lambda x: self.fPicker ( fname = None ))
         self.btn_calcular.clicked.connect       ( self.calculate_tsp                     )
         self.btn_limpar.clicked.connect         ( self.limpar                            )
+        self.btn_mostrar.clicked.connect        ( self.showRota                          )
 
         ################## MAP MAGIC ##################
         self.mapPath = None
@@ -38,6 +40,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.mapView.loadMap          ( self.mapMagic                    )
         self.mapView.update           (                                  )
         ###############################################
+
+    def showRota(self):
+        rota = rotaDialog(self.mapMagic, self.mapView.getTspSolution())
+        rota.exec()
 
     def limpar(self):
         self.mapView.reset()

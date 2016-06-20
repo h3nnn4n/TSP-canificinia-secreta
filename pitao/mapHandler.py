@@ -14,6 +14,7 @@ class mapHandler(o.SimpleHandler):
 
         self.points      = {}
         self.points_used = {}
+        self.road_names  = {}
 
         self.minLat =  99999
         self.maxLat = -99999
@@ -68,10 +69,14 @@ class mapHandler(o.SimpleHandler):
                 if old is not None:
                     self.lines.append((old.ref, j.ref))
                     self.named_roads.append(((old.ref, j.ref), w.tags['name'] if 'name' in w.tags else '', self.haversine(old.ref, j.ref)))
+                    self.road_names[(old.ref, j.ref)] = w.tags['name'] if 'name' in w.tags else ''
+                    self.road_names[(j.ref, old.ref)] = w.tags['name'] if 'name' in w.tags else ''
                 old = j
             if w.is_closed() and f is not None:
                 self.lines.append((old.ref, f))
                 self.named_roads.append(((old.ref, f), w.tags['name'] if 'name' in w.tags else '', self.dist(old.ref, f)))
+                self.road_names[(old.ref, f)] = w.tags['name'] if 'name' in w.tags else ''
+                self.road_names[(f, old.ref)] = w.tags['name'] if 'name' in w.tags else ''
 
     def relation(self, r):
         self.rels.append(r)

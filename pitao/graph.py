@@ -47,7 +47,6 @@ def dijkstra(mapMagic, source, dests):
         while prev[u] != -1:
             path.append((u, prev[u]))
             u = prev[u]
-        print((source_id, dest))
         dist[(source_id, dest)] = (path, dist[dest])
 
     return dist
