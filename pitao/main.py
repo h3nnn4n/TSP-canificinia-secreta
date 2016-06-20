@@ -44,15 +44,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def calculate_tsp(self):
         points = self.mapView.getClicked()
-        g      = {}
 
-        for p1 in points:
-            for p2 in points:
-                if p1 == p2:
-                    continue
-                else:
-                    w       = dijkstra(self.mapMagic, p1, p2)
-                    g[(p1[3], p2[3])] = w
+        g = generateCompleteGraph(self.mapMagic, points)
 
         path, cost = simmulatedAnnealing(g, self.mapMagic, points)
         self.mapView.tspSolution(path, g)
