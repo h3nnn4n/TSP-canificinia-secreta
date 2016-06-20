@@ -17,6 +17,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.btn_calcular.clicked.connect       ( self.calculate_tsp                     )
         self.btn_limpar.clicked.connect         ( self.limpar                            )
         self.btn_mostrar.clicked.connect        ( self.showRota                          )
+        self.btn_salvar.clicked.connect         ( self.saveRota                          )
 
         ################## MAP MAGIC ##################
         self.mapPath = None
@@ -40,6 +41,18 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.mapView.loadMap          ( self.mapMagic                    )
         self.mapView.update           (                                  )
         ###############################################
+
+    def saveRota(self):
+        f   = open('hist.dat', 'a')
+        self.tsp, self.graph = self.mapView.getTspSolution()
+        dist = 0
+
+        for i in range(0, len(self.tsp)-1):
+            k = (self.tsp[i], self.tsp[i+1])
+            dist += self.graph[k][1]
+
+        f.write(str(len(self.tsp)) + ' ' + str(dist) + '\n')
+        f.close()
 
     def showRota(self):
         rota = rotaDialog(self.mapMagic, self.mapView.getTspSolution())
