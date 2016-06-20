@@ -12,7 +12,7 @@ class drawingMachine(QtGui.QWidget):
         self.tsp      = None
         self.graph    = None
 
-    def reset():
+    def reset(self):
         self.clicked  = set()
         self.tsp      = None
         self.graph    = None
