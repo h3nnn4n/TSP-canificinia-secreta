@@ -1,0 +1,13 @@
+Original:
+30/05 -> Abrir o Mapa
+06/06 -> Grafo completo com tsp
+13/06 -> Relatorio e Historico
+20/06 -> Finalização
+
+
+Realizado:
+
+30/05 -> Abrir o Mapa
+06/06 -> ???
+13/06 -> Grafo completo com tsp
+20/06 -> Relatorio e Historico

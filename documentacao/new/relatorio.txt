@@ -1,0 +1,2 @@
+Dificuldades encontradas: Má documentação das bibliotecas utilizadas. Problemas de desempenho para o Dijkstra.
+Não confirmidades: Ausencia do caso de uso 5.
