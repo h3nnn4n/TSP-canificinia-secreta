@@ -1,6 +1,7 @@
 from PyQt4              import *
 from mainWindow         import *
 from rotaView           import *
+from histView           import *
 from drawingMachine     import *
 from mapHandler         import *
 from graph              import *
@@ -18,6 +19,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.btn_limpar.clicked.connect         ( self.limpar                            )
         self.btn_mostrar.clicked.connect        ( self.showRota                          )
         self.btn_salvar.clicked.connect         ( self.saveRota                          )
+        self.btn_historico.clicked.connect      ( self.showHist                          )
 
         ################## MAP MAGIC ##################
         self.mapPath = None
@@ -51,8 +53,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             k = (self.tsp[i], self.tsp[i+1])
             dist += self.graph[k][1]
 
-        f.write(str(len(self.tsp)) + ' ' + str(dist) + '\n')
+        f.write(str(len(self.tsp) - 1) + ' ' + str(dist) + '\n')
         f.close()
+
+    def showHist(self):
+        hist = viewDialog()
+        hist.exec()
 
     def showRota(self):
         rota = rotaDialog(self.mapMagic, self.mapView.getTspSolution())
