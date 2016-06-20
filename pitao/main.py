@@ -11,9 +11,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def __init__(self, parent = None):
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
-        self.actionSair.triggered.connect(self.sair)
-        self.actionAbrir_Mapa.triggered.connect(self.fPicker)
-        self.btn_calcular.clicked.connect(self.calculate_tsp)
+        self.actionSair.triggered.connect       ( self.sair                              )
+        self.actionAbrir_Mapa.triggered.connect ( lambda x: self.fPicker ( fname = None ))
+        self.btn_calcular.clicked.connect       ( self.calculate_tsp                     )
+        self.btn_limpar.clicked.connect         ( self.limpar                            )
 
         ################## MAP MAGIC ##################
         self.mapPath = None
@@ -31,12 +32,15 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         ###############################################
 
         ################ DRAWING MAGIC ################
-        self.mapView = drawingMachine(self.mapView)
-        self.mapView.setGeometry(QtCore.QRect(0, 0, 631, 541))
-        self.mapView.setObjectName("mapView")
-        self.mapView.loadMap(self.mapMagic)
-        self.mapView.update()
+        self.mapView = drawingMachine ( self.mapView                     )
+        self.mapView.setGeometry      ( QtCore.QRect   ( 0, 0, 631, 541 ))
+        self.mapView.setObjectName    ( "mapView"                        )
+        self.mapView.loadMap          ( self.mapMagic                    )
+        self.mapView.update           (                                  )
         ###############################################
+
+    def limpar(self):
+        self.mapView.reset()
 
     def calculate_tsp(self):
         points = self.mapView.getClicked()

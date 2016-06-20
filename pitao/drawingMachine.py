@@ -12,6 +12,12 @@ class drawingMachine(QtGui.QWidget):
         self.tsp      = None
         self.graph    = None
 
+    def reset():
+        self.clicked  = set()
+        self.tsp      = None
+        self.graph    = None
+        self.update()
+
     def tspSolution(self, sol, graph):
         self.tsp   = sol.copy()
         self.graph = graph.copy()

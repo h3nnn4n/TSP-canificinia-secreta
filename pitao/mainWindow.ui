@@ -84,7 +84,7 @@
         <string>Calcular</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="btn_limpar">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -94,7 +94,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Botão 2</string>
+        <string>Limpar</string>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_3">
@@ -107,7 +107,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Botão 2</string>
+        <string>Mostrar Rota</string>
        </property>
       </widget>
      </widget>
